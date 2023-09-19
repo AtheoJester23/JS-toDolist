@@ -5,8 +5,7 @@ Render();
 function Render(){
     let toPrint = '';
 
-    for (let u = 0; u < theList.length; u++){
-        const arrayObject = theList[u];
+    theList.forEach(function(arrayObject, index){
         const {name, dueDate} = arrayObject;
         
         const text = `
@@ -22,14 +21,14 @@ function Render(){
             <button
 //              What index in array to remove   How many values to remove
 //                                          🠗   🠗                         
-                onclick = "theList.splice(${u}, 1);
+                onclick = "theList.splice(${index}, 1);
                 Render();
                 save();
                 " class = "dButton">Delete</button>
         </div>
         `;
         toPrint += text;
-    }
+    })
 
     document.querySelector('.textPrint').innerHTML = toPrint;
 }

@@ -18,21 +18,25 @@ function Render(){
                 ${dueDate} 
             </div>
 
-            <button
-//              What index in array to remove   How many values to remove
-//                                          🠗   🠗                         
-                onclick = "theList.splice(${index}, 1);
-                Render();
-                save();
-                " class = "dButton">Delete</button>
+            <button class = "dButton">Delete</button>
         </div>
         `;
         toPrint += text;
     })
 
     document.querySelector('.textPrint').innerHTML = toPrint;
-}
 
+    
+    document.querySelectorAll('.dButton')
+    .forEach((dButton,index) => {
+        dButton.addEventListener('click', () => {
+            theList.splice(index, 1);
+            Render();
+            save();
+        })
+    })
+
+}
 
 
 function addDoto(){
@@ -59,3 +63,6 @@ function addDoto(){
 function save(){
     localStorage.setItem('save', JSON.stringify(theList));
 }
+
+document.querySelector('.addButton')
+    .addEventListener('click', () => addDoto());
